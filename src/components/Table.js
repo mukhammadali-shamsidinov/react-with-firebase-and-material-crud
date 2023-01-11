@@ -4,7 +4,7 @@ import { collection, doc, getDocs } from "firebase/firestore"
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {Grid, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow,Table, Button, IconButton} from "@mui/material"
-function Tables({deleteItem}) {
+function Tables({deleteItem,editItem}) {
   const [user,setUser] = useState([])
 
   async function getUsers(){
@@ -66,7 +66,7 @@ getUsers()
             {item.age}
           </TableCell>
           <TableCell>
-            <IconButton color="primary">
+            <IconButton color="primary" onClick={()=>editItem(item.id,item.name,item.email,item.age)}>
               <EditIcon />
             </IconButton>
             <IconButton onClick={()=>deleteItem(item.id)} color="error">
